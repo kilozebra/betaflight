@@ -172,7 +172,7 @@ void renderOsdWarning(char *warningText, bool *blinking, uint8_t *displayAttr)
 #ifdef USE_RX_LINK_QUALITY_INFO
     // Link Quality
     if (osdWarnGetState(OSD_WARNING_LINK_QUALITY) && (rxGetLinkQualityPercent() < osdConfig()->link_quality_alarm)) {
-        tfp_sprintf(warningText, "LINK QUALITY");
+        tfp_sprintf(warningText, "LINK QUAL %d:%d", rxGetRfMode(), rxGetLinkQualityPercent());
         *displayAttr = DISPLAYPORT_ATTR_WARNING;
         *blinking = true;;
         return;
