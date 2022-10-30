@@ -1486,7 +1486,13 @@ static void osdElementWarnings(osdElementParms_t *element)
 
 static const uint8_t osdElementDisplayOrder[] = {
     OSD_MAIN_BATT_VOLTAGE,
+#ifdef USE_RX_LINK_QUALITY_INFO
+    OSD_LINK_QUALITY,
+#endif
     OSD_RSSI_VALUE,
+#ifdef USE_RX_RSSI_DBM
+    OSD_RSSI_DBM_VALUE,
+#endif
     OSD_CROSSHAIRS,
     OSD_HORIZON_SIDEBARS,
     OSD_UP_DOWN_REFERENCE,
@@ -1535,14 +1541,8 @@ static const uint8_t osdElementDisplayOrder[] = {
 #ifdef USE_ADC_INTERNAL
     OSD_CORE_TEMPERATURE,
 #endif
-#ifdef USE_RX_LINK_QUALITY_INFO
-    OSD_LINK_QUALITY,
-#endif
 #ifdef USE_RX_LINK_UPLINK_POWER
     OSD_TX_UPLINK_POWER,
-#endif
-#ifdef USE_RX_RSSI_DBM
-    OSD_RSSI_DBM_VALUE,
 #endif
 #ifdef USE_OSD_STICK_OVERLAY
     OSD_STICK_OVERLAY_LEFT,
