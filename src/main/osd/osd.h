@@ -99,6 +99,7 @@ extern const char * const osdTimerSourceNames[OSD_NUM_TIMER_TYPES];
 // See the information at the top of osd/osd_elements.c for instructions
 // on how to add OSD elements.
 typedef enum {
+    OSD_LINK_QUALITY,
     OSD_RSSI_VALUE,
     OSD_MAIN_BATT_VOLTAGE,
     OSD_CROSSHAIRS,
@@ -145,7 +146,6 @@ typedef enum {
     OSD_MOTOR_DIAG,
     OSD_LOG_STATUS,
     OSD_FLIP_ARROW,
-    OSD_LINK_QUALITY,
     OSD_FLIGHT_DIST,
     OSD_STICK_OVERLAY_LEFT,
     OSD_STICK_OVERLAY_RIGHT,
