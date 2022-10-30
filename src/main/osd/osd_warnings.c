@@ -169,13 +169,15 @@ void renderOsdWarning(char *warningText, bool *blinking, uint8_t *displayAttr)
     }
 #endif // USE_LAUNCH_CONTROL
 
-    // RSSI
-    if (osdWarnGetState(OSD_WARNING_RSSI) && (getRssiPercent() < osdConfig()->rssi_alarm)) {
-        tfp_sprintf(warningText, "RSSI LOW");
+#ifdef USE_RX_LINK_QUALITY_INFO
+    // Link Quality
+    if (osdWarnGetState(OSD_WARNING_LINK_QUALITY) && (rxGetLinkQualityPercent() < osdConfig()->link_quality_alarm)) {
+        tfp_sprintf(warningText, "LINK QUALITY");
         *displayAttr = DISPLAYPORT_ATTR_WARNING;
         *blinking = true;;
         return;
     }
+
 #ifdef USE_RX_RSSI_DBM
     // rssi dbm
     if (osdWarnGetState(OSD_WARNING_RSSI_DBM) && (getRssiDbm() < osdConfig()->rssi_dbm_alarm)) {
@@ -186,15 +188,15 @@ void renderOsdWarning(char *warningText, bool *blinking, uint8_t *displayAttr)
     }
 #endif // USE_RX_RSSI_DBM
 
-#ifdef USE_RX_LINK_QUALITY_INFO
-    // Link Quality
-    if (osdWarnGetState(OSD_WARNING_LINK_QUALITY) && (rxGetLinkQualityPercent() < osdConfig()->link_quality_alarm)) {
-        tfp_sprintf(warningText, "LINK QUALITY");
+#endif // USE_RX_LINK_QUALITY_INFO
+
+    // RSSI
+    if (osdWarnGetState(OSD_WARNING_RSSI) && (getRssiPercent() < osdConfig()->rssi_alarm)) {
+        tfp_sprintf(warningText, "RSSI LOW");
         *displayAttr = DISPLAYPORT_ATTR_WARNING;
         *blinking = true;;
         return;
     }
-#endif // USE_RX_LINK_QUALITY_INFO
 
     if (osdWarnGetState(OSD_WARNING_BATTERY_CRITICAL) && batteryState == BATTERY_CRITICAL) {
         tfp_sprintf(warningText, " LAND NOW");
